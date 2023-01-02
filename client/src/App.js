@@ -1,17 +1,21 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core";
-import theme from "./theme";
-import MainRouter from "./MainRouter";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Components/Auth/Login/login";
+import SignUp from "./Components/Auth/SignUp/signUp";
+import Dashboard from "./Components/Dashboard";
 
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <MainRouter />
-      </ThemeProvider>
-    </BrowserRouter>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Login />} />
+          <Route path="/signup" exact element={<SignUp />} />
+          <Route path="/dashboard" exact element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </div>
   );
-};
+}
 
 export default App;

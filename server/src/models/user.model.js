@@ -5,41 +5,33 @@ const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     trim: true,
-    required: "First Name is required",
+    required: " First Name is required",
   },
-
   lastName: {
     type: String,
     trim: true,
-    required: "Last Name is required",
+    required: " Last Name is required",
   },
-
   phoneNumber: {
     type: Number,
     trim: true,
-    required: "Phone Number is required", // ovdje sam promijenio model,onako kako mi treba
+    required: "Phone Number is required",
   },
-
   email: {
     type: String,
-    trim: true,
-    unique: "Email already exists!",
-    match: [/.+\@.+\..+/, "Please fill a a valid email address!"],
+    unique: "Email already exists",
+    match: [/.+\@.+/, "Please fill a valid email address"],
     required: "Email is required",
   },
-
   created: {
     type: Date,
     default: Date.now,
   },
-
   updated: Date,
-
   hashed_password: {
     type: String,
     required: "Password is required",
   },
-
   salt: String,
 });
 
@@ -49,7 +41,7 @@ UserSchema.virtual("password")
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
   })
-  .get(function () {
+  .get(() => {
     return this._password;
   });
 
@@ -65,7 +57,6 @@ UserSchema.methods = {
         .update(password)
         .digest("hex");
     } catch (err) {
-      console.log(err);
       return "";
     }
   },

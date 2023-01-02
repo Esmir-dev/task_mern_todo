@@ -1,5 +1,5 @@
 {
-    "verbose": false,
-    "watch": ["./src"],
-    "exec": "webpack && node ./dist/main.js"
+  "verbose": false,
+  "watch": ["./src"],
+  "exec": "npx webpack && node ./dist/main.js"
 }
